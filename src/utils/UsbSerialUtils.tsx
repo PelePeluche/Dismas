@@ -32,6 +32,16 @@ export async function requestUSBPermission (): Promise<UsbSerial | null> {
   }
 }
 
+export async function disconnectUSB (usbSerial: UsbSerial | null) {
+  if (usbSerial) {
+    try {
+      await usbSerial.close()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+}
+
 export async function sendData (usbSerial: UsbSerial | null, data: string) {
   if (usbSerial) {
     try {
