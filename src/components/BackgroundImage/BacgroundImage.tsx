@@ -1,12 +1,7 @@
-import React, {ReactNode} from 'react'
-import {ImageBackground, ImageSourcePropType} from 'react-native'
+import React from 'react'
+import {ImageBackground} from 'react-native'
 import {styles} from './BacgroundImageStyle'
-
-interface BackgroundImageComponentProps {
-  children?: ReactNode
-  image: ImageSourcePropType
-  resizeMode?: 'cover' | 'contain' | 'stretch' | 'repeat' | 'center'
-}
+import {BackgroundImageComponentProps} from './types'
 
 /**
  * BackgroundImageComponent is a React functional component that renders a background image

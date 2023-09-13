@@ -1,16 +1,11 @@
 import React, {useState} from 'react'
 import {View} from 'react-native'
 import {Button, Text} from '@rneui/themed'
-import {StackNavigationProp} from '@react-navigation/stack'
-import {RootStackParamList} from '../../../types'
 import {CommonColorModal} from './Modals'
 import {BackgroundImageComponent} from '../../components/BackgroundImage'
 import {styles} from './ConfigurationModeStyle'
 import BackroundGrid from '../../../assets/images/BackgroundGrid.jpg'
-
-type ConfigScreenProps = {
-  navigation: StackNavigationProp<RootStackParamList, 'Config'>
-}
+import {ConfigScreenProps} from './types'
 
 /**
  * Config screen component.

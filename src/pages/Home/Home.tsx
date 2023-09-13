@@ -3,16 +3,11 @@ import {View} from 'react-native'
 import {Text, Button} from '@rneui/themed'
 import {requestUSBPermission, disconnectUSB} from '../../utils/UsbSerialUtils'
 import {UsbSerial} from 'react-native-usb-serialport-for-android'
-import {StackNavigationProp} from '@react-navigation/stack'
-import {RootStackParamList} from '../../../types'
 import {BackgroundImageComponent} from '../../components/BackgroundImage'
 import BackroundGrid from '../../../assets/images/BackgroundGrid.jpg'
 import {Image} from '@rneui/themed'
 import {styles} from './HomeStyle'
-
-type HomeProps = {
-  navigation: StackNavigationProp<RootStackParamList, 'Home'>
-}
+import {HomeProps} from './types'
 
 /**
  * Renders the Home screen.

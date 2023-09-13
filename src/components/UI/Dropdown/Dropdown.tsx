@@ -1,19 +1,6 @@
 import React from 'react'
 import {Dropdown} from 'react-native-element-dropdown'
-
-type IDropdownItem = {
-  label: string
-  value: string
-}
-
-type DropdownComponentProps = {
-  data: IDropdownItem[]
-  labelField: 'label'
-  valueField: 'value'
-  placeholder: string
-  value: string | null
-  onChange: (item: IDropdownItem) => void
-}
+import {DropdownComponentProps} from './types'
 
 /**
  * A dropdown component that renders a dropdown with provided data and handles value changes.
