@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Garet Book.ttf",
+      "sha1": "ceb3822b6d217822ff7b52fd0280123ab96f5640"
+    },
+    {
+      "path": "assets/fonts/Moon Get.ttf",
+      "sha1": "f41889709aa5883efcad4d37a599748652ab11b4"
+    }
+  ]
+}
