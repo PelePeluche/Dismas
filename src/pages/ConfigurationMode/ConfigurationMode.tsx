@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {View} from 'react-native'
 import {Button, Text} from '@rneui/themed'
-import {CommonColorModal} from './Modals'
+import {CommonColorModal, YellowModal} from './Modals'
 import {BackgroundImageComponent} from '../../components/BackgroundImage'
 import {styles} from './ConfigurationModeStyle'
 import BackroundGrid from '../../../assets/images/BackgroundGrid.jpg'
@@ -13,7 +13,8 @@ import {ConfigScreenProps} from './types'
  * @param {ConfigScreenProps} navigation - The navigation prop.
  */
 export const ConfigScreen = ({navigation}: ConfigScreenProps) => {
-  const [redModalVisible, setRedModalVisible] = useState(false)
+  const [commonModalVisible, setCommonModalVisible] = useState(false)
+  const [yellowModalVisible, setYellowModalVisible] = useState(false)
   const [selectedColor, setSelectedColor] = useState('')
 
   /**
@@ -22,7 +23,11 @@ export const ConfigScreen = ({navigation}: ConfigScreenProps) => {
    * @param {string} color - The selected color.
    */
   const handleButtonFunctionSelect = (color: string) => {
-    setRedModalVisible(true)
+    if (color === 'amarillo') {
+      setYellowModalVisible(true)
+    } else {
+      setCommonModalVisible(true)
+    }
     setSelectedColor(color)
   }
 
@@ -36,51 +41,59 @@ export const ConfigScreen = ({navigation}: ConfigScreenProps) => {
   return (
     <BackgroundImageComponent image={BackroundGrid}>
       <View style={styles.container}>
+        <Text style={styles.title}>¿Qué botón quieres configurar?</Text>
         <Button
           title={CustomTitle('rojo')}
           color='#E50918'
           buttonStyle={styles.button}
-          onPress={() => handleButtonFunctionSelect('red')}
+          onPress={() => handleButtonFunctionSelect('rojo')}
         />
         <Button
           title={CustomTitle('azul')}
           color='#2872B5'
           buttonStyle={styles.button}
-          onPress={() => handleButtonFunctionSelect('blue')}
+          onPress={() => handleButtonFunctionSelect('azul')}
         />
         <Button
           title={CustomTitle('naranja')}
           color='#FF914D'
           buttonStyle={styles.button}
-          onPress={() => handleButtonFunctionSelect('orange')}
+          onPress={() => handleButtonFunctionSelect('naranja')}
         />
         <Button
           title={CustomTitle('celeste')}
           color='#38B6FF'
           buttonStyle={styles.button}
-          onPress={() => handleButtonFunctionSelect('cyan')}
+          onPress={() => handleButtonFunctionSelect('celeste')}
         />
         <Button
-          title='Configurar botónes amarillos'
+          title='Botones amarillos'
           titleStyle={styles.buttonTitle}
           color='#FBC433'
           buttonStyle={styles.button}
-          onPress={() => handleButtonFunctionSelect('yellow')}
+          onPress={() => handleButtonFunctionSelect('amarillo')}
         />
 
         {/* Show the common color modal if the selected color is not yellow */}
-        {selectedColor !== 'yellow' && (
+        {selectedColor !== 'amarillo' && (
           <CommonColorModal
-            visible={redModalVisible}
-            onClose={() => setRedModalVisible(false)}
+            visible={commonModalVisible}
+            onClose={() => setCommonModalVisible(false)}
             color={selectedColor}
+          />
+        )}
+
+        {selectedColor === 'amarillo' && (
+          <YellowModal
+            visible={yellowModalVisible}
+            onClose={() => setYellowModalVisible(false)}
           />
         )}
 
         <Button
           title='Salir de modo configuración'
           titleStyle={styles.exitButtonTitle}
-          color=''
+          color='black'
           buttonStyle={styles.exitButton}
           onPress={handleExitConfig}
         />
@@ -100,7 +113,7 @@ const CustomTitle = (color: string) => {
     <View>
       <Text style={styles.buttonTitle}>
         {/* Display the button color in the title */}
-        Configurar botón {color}
+        Botón {color}
       </Text>
     </View>
   )

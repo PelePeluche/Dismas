@@ -1,26 +1,16 @@
 import React, {useState} from 'react'
-import {Modal, View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import {Modal, View, Text, TouchableOpacity} from 'react-native'
+import {Button} from '@rneui/themed'
 import {DropdownComponent} from '../../../../components/UI/Dropdown'
+import {CommonColorModalProps} from './types'
+import {BUTTONS_FUNCTIONS, CHARACTERS} from './definitions'
+import {styles} from './CommonColorModalStyle'
 
-type CommonColorModalProps = {
-  visible: boolean;
-  onClose: () => void;
-  color: string; // Nueva prop para especificar el color
-};
-
-
-const data = [
-  {label: 'Click izquierdo', value: '1'},
-  {label: 'Click derecho', value: '2'},
-  {label: 'Click central', value: '3'},
-  {label: 'Barra espaciadora', value: '4'},
-  {label: 'Tecla enter', value: '5'},
-  {label: 'Doble click', value: '6'},
-  {label: 'Una letra', value: '7'},
-  {label: 'Nada (anular botón)', value: '8'},
-]
-
-export const CommonColorModal = ({visible, onClose, color}: CommonColorModalProps) => {
+export const CommonColorModal = ({
+  visible,
+  onClose,
+  color,
+}: CommonColorModalProps) => {
   const [selectedValue, setSelectedValue] = useState<string | null>(null)
   const [selectedLetter, setSelectedLetter] = useState<string>('')
 
@@ -34,7 +24,6 @@ export const CommonColorModal = ({visible, onClose, color}: CommonColorModalProp
   }
 
   const handleAssignFunctionality = () => {
-    // Lógica para asignar la funcionalidad según los valores seleccionados en los dropdowns
     console.log(`Funcionalidad seleccionada: ${selectedValue}`)
     if (selectedValue === '7') {
       console.log(`Letra seleccionada: ${selectedLetter}`)
@@ -44,10 +33,10 @@ export const CommonColorModal = ({visible, onClose, color}: CommonColorModalProp
   return (
     <Modal visible={visible} animationType='slide' transparent>
       <View style={styles.modalOverlay}>
-        <View style={styles.redModal}>
-          <Text style={styles.modalText}>Configuración del botón {color}</Text>
+        <View style={styles.modal}>
+          <Text style={styles.modalTitle}>Configuración del botón {color}</Text>
           <DropdownComponent
-            data={data}
+            data={BUTTONS_FUNCTIONS}
             labelField='label'
             valueField='value'
             placeholder='Selecciona una función'
@@ -56,12 +45,7 @@ export const CommonColorModal = ({visible, onClose, color}: CommonColorModalProp
           />
           {selectedValue === '7' && (
             <DropdownComponent
-              data={[
-                {label: 'A', value: 'A'},
-                {label: 'B', value: 'B'},
-                {label: 'C', value: 'C'},
-                // Agrega más opciones de letra según sea necesario
-              ]}
+              data={CHARACTERS}
               labelField='label'
               valueField='value'
               placeholder='Selecciona una letra'
@@ -69,45 +53,18 @@ export const CommonColorModal = ({visible, onClose, color}: CommonColorModalProp
               onChange={handleLetterDropdownChange}
             />
           )}
-          <TouchableOpacity onPress={handleAssignFunctionality}>
-            <Text>Asignar funcionalidad</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
+
+          <Button
+            title='Asignar funcionalidad'
+            titleStyle={styles.buttonTitle}
+            color='black'
+            buttonStyle={styles.button}
+            onPress={handleAssignFunctionality}
+          />
+
+          <Button type='clear' title='Cerrar' titleStyle={styles.closeButtonText} buttonStyle={styles.closeButton}  onPress={onClose} />
         </View>
       </View>
     </Modal>
   )
 }
-
-const styles = StyleSheet.create({
-  modalOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  redModal: {
-    backgroundColor: 'white',
-    width: '80%',
-    height: '80%',
-    padding: 20,
-    borderRadius: 10,
-  },
-  modalText: {
-    fontSize: 18,
-    marginBottom: 20,
-    color: 'black',
-  },
-  closeButton: {
-    backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 5,
-    alignSelf: 'flex-end',
-  },
-  closeButtonText: {
-    fontSize: 16,
-    color: 'red',
-  },
-})

@@ -1,6 +1,7 @@
 import React from 'react'
 import {Dropdown} from 'react-native-element-dropdown'
 import {DropdownComponentProps} from './types'
+import {styles} from './DropdownStyle'
 
 /**
  * A dropdown component that renders a dropdown with provided data and handles value changes.
@@ -25,6 +26,10 @@ export const DropdownComponent: React.FC<DropdownComponentProps> = ({
   return (
     <Dropdown
       data={data}
+      style={styles.dropdown}
+      placeholderStyle={styles.placeholderStyle}
+      selectedTextStyle={styles.selectedTextStyle}
+      itemTextStyle={styles.itemTextStyle}
       mode='modal'
       labelField={labelField}
       valueField={valueField}

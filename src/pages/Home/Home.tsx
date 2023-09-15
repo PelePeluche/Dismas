@@ -55,18 +55,22 @@ export function Home ({navigation}: HomeProps): JSX.Element {
   return (
     <BackgroundImageComponent image={BackroundGrid}>
       <View style={styles.container}>
-        <Text>Bienvenido a Dismas</Text>
+        <Text style={styles.title}>Bienvenido a Dismas</Text>
         <Image
           source={require('../../../assets/images/iconodismas.jpg')}
           style={styles.image}
         />
         <Button
           title={connected ? 'Desconectar' : 'Conectar'}
+          color='black'
+          buttonStyle={styles.button}
           titleStyle={styles.buttonTitle}
           onPress={connected ? handleDisconnect : handleConnect}
         />
         <Button
-          title='Entrar en modo configuración'
+          title='Entrar a modo configuración'
+          color='black'
+          buttonStyle={styles.button}
           titleStyle={styles.buttonTitle}
           onPress={handleGoToConfig}
         />
