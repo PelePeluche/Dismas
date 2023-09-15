@@ -11,22 +11,30 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 20,
   },
+  title:{
+    fontFamily: 'Garet Book',
+    fontSize: 24,
+    textAlign: 'center',
+    color: 'black',
+  },
   button: {
     width: 300,
-    height: 70,
+    height: 65,
+    borderRadius: 20,
   },
   buttonTitle: {
     fontFamily: 'Garet Book',
     fontSize: 20,
-    color: 'black',
+    color: 'white',
   },
   exitButton: {
     width: 220,
-    height: 50,
+    height: 60,
+    borderRadius: 20,
   },
   exitButtonTitle: {
     fontFamily: 'Garet Book',
     fontSize: 14,
-    color: 'black',
+    color: 'white',
   }
 })
